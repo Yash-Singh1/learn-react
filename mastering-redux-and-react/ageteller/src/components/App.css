@@ -24,16 +24,26 @@
 }
 
 .age-stats {
-  opacity: 100
+  opacity: 100;
 }
 
 @keyframes fade-in {
-  from { opacity: 0 }
-  to { opacity: 100 }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+  }
 }
 
 @keyframes fade-out-in {
-  0% { opacity: 100 }
-  50% { opacity: 0 }
-  100% { opacity: 100 }
+  0% {
+    opacity: 100;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
 }

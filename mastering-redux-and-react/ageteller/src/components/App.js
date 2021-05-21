@@ -12,7 +12,7 @@ class App extends Component {
       birthday: '2007-12-10',
       showStats: 0,
       withoutClass: false
-    }
+    };
   }
 
   retriggerAnimation(cb) {
@@ -34,7 +34,7 @@ class App extends Component {
         });
         this.retriggerAnimation(() => {
           this.setState({
-            birthday: this.state.newDate,
+            birthday: this.state.newDate
           });
         });
       } else {
@@ -48,39 +48,36 @@ class App extends Component {
 
   render() {
     return (
-      <div id='App'>
+      <div id="App">
         <h2>Input Your Birthday!</h2>
         <Form inline>
           <FormControl
             type="date"
-            onChange={event => this.setState({ newDate: event.target.value })}
-          >
-          </FormControl>
-          {' '}
-          <Button id='submit' onClick={() => this.changeBirthday()}>
+            onChange={(event) => this.setState({ newDate: event.target.value })}
+          ></FormControl>{' '}
+          <Button id="submit" onClick={() => this.changeBirthday()}>
             Submit
           </Button>
         </Form>
-        {
-          this.state.showStats === 1 ?
-            <div className="fade age-stats">
+        {this.state.showStats === 1 ? (
+          <div className="fade age-stats">
+            <AgeStats date={this.state.birthday} />
+          </div>
+        ) : this.state.showStats > 1 ? (
+          this.state.withoutClass ? (
+            <div className="age-stats">
               <AgeStats date={this.state.birthday} />
             </div>
-          :
-            this.state.showStats > 1 ?
-              this.state.withoutClass ?
-                <div className="age-stats">
-                  <AgeStats date={this.state.birthday} />
-                </div>
-              :
-                <div className="age-stats fade-out-in">
-                  <AgeStats date={this.state.birthday} />
-                </div>
-            :
-              <div></div>
-        }
+          ) : (
+            <div className="age-stats fade-out-in">
+              <AgeStats date={this.state.birthday} />
+            </div>
+          )
+        ) : (
+          <div></div>
+        )}
       </div>
-    )
+    );
   }
 }
 
