@@ -1,5 +1,5 @@
 import characters_json from '../data/characters.json';
-import { createCharacter } from './helpers'
+import { createCharacter } from './helpers';
 import { ADD_CHARACTER, CLEAR_ALL, REMOVE_CHARACTER } from '../actions';
 
 function characters(state = characters_json, action) {

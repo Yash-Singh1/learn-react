@@ -7,24 +7,28 @@ class HeroesList extends Component {
     return (
       <div>
         <h4>Your Hero Squad</h4>
-        <ul className='list-group'>
-          {
-            this.props.heroes.map((hero) => {
-              return (
-                <li key={hero.id} className='list-group-item'>
-                  <div className='list-item'>{hero.name} (<b>strength</b>: {hero.strength}, <b>intelligence</b>: {hero.intelligence}, <b>speed</b>: {hero.speed})</div>
-                  <div
-                    className='list-item right-button'
-                    onClick={() => this.props.removeCharacterById(hero.id)}
-                  >
-                    &times;
-                  </div>
-                </li>
-              );
-            })
-          }
+        <ul className="list-group">
+          {this.props.heroes.map((hero) => {
+            return (
+              <li key={hero.id} className="list-group-item">
+                <div className="list-item">
+                  {hero.name} (<b>strength</b>: {hero.strength},{' '}
+                  <b>intelligence</b>: {hero.intelligence}, <b>speed</b>:{' '}
+                  {hero.speed})
+                </div>
+                <div
+                  className="list-item right-button"
+                  onClick={() => this.props.removeCharacterById(hero.id)}
+                >
+                  &times;
+                </div>
+              </li>
+            );
+          })}
         </ul>
-        <button onClick={() => this.props.clearAll()} className='btn btn-info'>Clear All</button>
+        <button onClick={() => this.props.clearAll()} className="btn btn-info">
+          Clear All
+        </button>
       </div>
     );
   }
@@ -36,4 +40,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { removeCharacterById, clearAll })(HeroesList);
+export default connect(mapStateToProps, { removeCharacterById, clearAll })(
+  HeroesList
+);

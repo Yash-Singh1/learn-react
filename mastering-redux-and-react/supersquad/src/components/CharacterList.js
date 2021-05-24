@@ -8,24 +8,24 @@ class CharacterList extends Component {
     return (
       <div>
         <h4>Characters</h4>
-        <ul className='list-group'>
-          {
-            this.props.characters.map((character) => {
-              return (
-                <li key={character.id} className='list-group-item'>
-                  <div className='list-item'>
-                    {character.name} (<b>strength</b>: {character.strength}, <b>intelligence</b>: {character.intelligence}, <b>speed</b>: {character.speed})
-                  </div>
-                  <div
-                    className='list-item right-button'
-                    onClick={() => this.props.addCharacterById(character.id)}
-                  >
-                    +
-                  </div>
-                </li>
-              );
-            })
-          }
+        <ul className="list-group">
+          {this.props.characters.map((character) => {
+            return (
+              <li key={character.id} className="list-group-item">
+                <div className="list-item">
+                  {character.name} (<b>strength</b>: {character.strength},{' '}
+                  <b>intelligence</b>: {character.intelligence}, <b>speed</b>:{' '}
+                  {character.speed})
+                </div>
+                <div
+                  className="list-item right-button"
+                  onClick={() => this.props.addCharacterById(character.id)}
+                >
+                  +
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </div>
     );
@@ -42,4 +42,7 @@ function mapStateToProps(state) {
 //   return bindActionCreators({ addCharacterById }, dispatch);
 // }
 
-export default connect(mapStateToProps, /* mapDispatchToProps */ { addCharacterById })(CharacterList);
+export default connect(
+  mapStateToProps,
+  /* mapDispatchToProps */ { addCharacterById }
+)(CharacterList);
