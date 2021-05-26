@@ -6,14 +6,21 @@ class Banner extends Component {
   render() {
     return (
       <div>
-        {
-          !this.props.bannerContent ?
-            <div></div>
-          :
-            <div className='banner'>{this.props.bannerContent} <button className='closeBtn' onClick={() => this.props.setBannerContent(null)}>&times;</button></div>
-        }
+        {!this.props.bannerContent ? (
+          <div></div>
+        ) : (
+          <div className="banner">
+            {this.props.bannerContent}{' '}
+            <button
+              className="closeBtn"
+              onClick={() => this.props.setBannerContent(null)}
+            >
+              &times;
+            </button>
+          </div>
+        )}
       </div>
-    )
+    );
   }
 }
 
@@ -23,4 +30,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { setBannerContent })(Banner)
+export default connect(mapStateToProps, { setBannerContent })(Banner);

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setFavoriteRecipes, setBannerContent, setBannerRemoveTimer } from '../actions';
+import {
+  setFavoriteRecipes,
+  setBannerContent,
+  setBannerRemoveTimer
+} from '../actions';
 
 class RecipeItem extends Component {
   constructor() {
@@ -16,7 +20,9 @@ class RecipeItem extends Component {
   }
 
   favorite(recipe) {
-    const newFavorites = JSON.parse(localStorage.getItem('favorites')).concat(recipe);
+    const newFavorites = JSON.parse(localStorage.getItem('favorites')).concat(
+      recipe
+    );
     localStorage.setItem('favorites', JSON.stringify(newFavorites));
     this.props.setFavoriteRecipes(newFavorites);
     this.setState({ favorited: true });
@@ -38,7 +44,9 @@ class RecipeItem extends Component {
 
   removeBannerTimer() {
     clearTimeout(this.props.bannerRemoveTimer);
-    this.props.setBannerRemoveTimer(setTimeout(() => this.props.setBannerContent(null), 3000));
+    this.props.setBannerRemoveTimer(
+      setTimeout(() => this.props.setBannerContent(null), 3000)
+    );
   }
 
   updateStarred() {
@@ -73,17 +81,23 @@ class RecipeItem extends Component {
 
     return (
       <div className="recipe-item">
-        {
-          this.state.favorited ? (
-            <div unselectable='on' className="star unselectable" onClick={() => this.unfavorite(recipe)}>
-              &#9733;
-            </div>
-          ) : (
-            <div unselectable='on' className="star unselectable" onClick={() => this.favorite(recipe)}>
-              &#9734;
-            </div>
-          )
-        }
+        {this.state.favorited ? (
+          <div
+            unselectable="on"
+            className="star unselectable"
+            onClick={() => this.unfavorite(recipe)}
+          >
+            &#9733;
+          </div>
+        ) : (
+          <div
+            unselectable="on"
+            className="star unselectable"
+            onClick={() => this.favorite(recipe)}
+          >
+            &#9734;
+          </div>
+        )}
         <div className="recipe-text">
           <a href={recipe.href}>
             <h4>{recipe.title}</h4>
@@ -102,4 +116,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { setFavoriteRecipes, setBannerContent, setBannerRemoveTimer })(RecipeItem);
+export default connect(mapStateToProps, {
+  setFavoriteRecipes,
+  setBannerContent,
+  setBannerRemoveTimer
+})(RecipeItem);
