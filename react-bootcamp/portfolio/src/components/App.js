@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import Header from './Header';
 import Projects from './Projects';
 import SocialProfiles from './SocialProfiles';
-import profile from './assets/profile.png';
+import Title from './Title';
+import profile from '../assets/profile.png';
 
 class App extends Component {
   state = {
     displayBio: false
-  }
+  };
 
   // readMore() {
   //   this.setState({ displayBio: true });
@@ -22,10 +24,15 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <img src={profile} alt='profile' className='profile' />
+      <div
+        style={{
+          marginTop: 30
+        }}
+      >
+        <img src={profile} alt="profile" className="profile" />
         <h1>Hello!</h1>
-        <p>My name is Yash. I'm a student.</p>
+        <p>My name is Yash.</p>
+        <Title />
         <p>I'm always looking forward to working on meaningful projects.</p>
         {this.state.displayBio ? (
           <div>
