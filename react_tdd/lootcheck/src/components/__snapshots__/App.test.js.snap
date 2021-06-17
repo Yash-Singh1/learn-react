@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders properly 1`] = `
+<div>
+  <h2>
+    Loot Check
+  </h2>
+  <hr />
+  <Connect(Wallet) />
+  <hr />
+  <Connect(Loot) />
+  <div>
+    Powered by
+     
+    <a
+      href="https://www.coindesk.com/price/bitcoin"
+      rel="noreferrer"
+      target="_blank"
+    >
+      Coindesk
+    </a>
+  </div>
+</div>
+`;

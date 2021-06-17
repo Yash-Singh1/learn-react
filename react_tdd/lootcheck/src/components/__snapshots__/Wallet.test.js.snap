@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Wallet renders properly 1`] = `
+Wallet {
+  "context": Object {},
+  "props": Object {
+    "balance": 20,
+    "deposit": [MockFunction],
+    "withdraw": [MockFunction],
+  },
+  "refs": Object {},
+  "state": Object {
+    "balance": undefined,
+  },
+  "updater": Updater {
+    "_callbacks": Array [],
+    "_renderer": ReactShallowRenderer {
+      "_context": Object {},
+      "_didScheduleRenderPhaseUpdate": false,
+      "_dispatcher": Object {
+        "readContext": [Function],
+        "useCallback": [Function],
+        "useContext": [Function],
+        "useDebugValue": [Function],
+        "useDeferredValue": [Function],
+        "useEffect": [Function],
+        "useImperativeHandle": [Function],
+        "useLayoutEffect": [Function],
+        "useMemo": [Function],
+        "useReducer": [Function],
+        "useRef": [Function],
+        "useResponder": [Function],
+        "useState": [Function],
+        "useTransition": [Function],
+      },
+      "_element": <Wallet
+        balance={20}
+        deposit={[MockFunction]}
+        withdraw={[MockFunction]}
+      />,
+      "_firstWorkInProgressHook": null,
+      "_forcedUpdate": false,
+      "_instance": [Circular],
+      "_isReRender": false,
+      "_newState": null,
+      "_numberOfReRenders": 0,
+      "_renderPhaseUpdates": null,
+      "_rendered": <div>
+        <h3
+          className="balance"
+        >
+          Wallet balance: 
+          20
+        </h3>
+        <br />
+        <input
+          className="input-wallet"
+          onChange={[Function]}
+        />
+        <Button
+          active={false}
+          className="btn-deposit"
+          disabled={false}
+          onClick={[Function]}
+          variant="primary"
+        >
+          Deposit
+        </Button>
+        <Button
+          active={false}
+          className="btn-withdraw"
+          disabled={false}
+          onClick={[Function]}
+          variant="primary"
+        >
+          Withdraw
+        </Button>
+      </div>,
+      "_rendering": false,
+      "_updater": [Circular],
+      "_workInProgressHook": null,
+    },
+  },
+}
+`;
