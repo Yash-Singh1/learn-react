@@ -1,6 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import uuid from 'uuid/v4';
+
+const TYPES = {
+  ADD_TASK: 'ADD_TASK',
+  COMPLETE_TASK: 'COMPLETE_TASK',
+  DELETE_TASK: 'DELETE_TASK'
+};
+
+const initialTasksState = {
+  tasks: [],
+  completedTasks: []
+};
+
+const tasksReducer = (state, action) => {
+  console.log('reducer here', state, action);
+  switch (action.type) {
+    case TYPES.ADD_TASK:
+      return {
+        ...state,
+        tasks: [...state.tasks, action.task]
+      };
+
+    case TYPES.COMPLETE_TASK:
+      return {
+        ...state,
+        completedTasks: [...state.completedTasks, action.completedTask],
+        tasks: state.tasks.filter((task) => task.id !== action.completedTask.id)
+      };
+
+    case TYPES.DELETE_TASK:
+      return {
+        ...state,
+        completedTasks: state.completedTasks.filter(
+          (completedTask) => completedTask.id !== action.task.id
+        )
+      };
+
+    default:
+      return state;
+  }
+};
 
 const TASKS_STORAGE_KEY = 'TASKS_STORAGE_KEY';
 
@@ -13,19 +53,18 @@ function storeTasks({ tasks, completedTasks }) {
 
 function readStoredTasks() {
   const item = localStorage.getItem(TASKS_STORAGE_KEY);
-  return item ? JSON.parse(item) : { tasks: [], completedTasks: [] };
+  return item ? JSON.parse(item) : initialTasksState;
 }
 
 function Tasks() {
-  const readTasks = readStoredTasks();
   const [taskText, setTaskText] = useState('');
-  const [tasks, setTasks] = useState(readTasks.tasks);
-  const [completedTasks, setCompletedTasks] = useState(
-    readTasks.completedTasks
-  );
+
+  const [state, dispatch] = useReducer(tasksReducer, readStoredTasks());
+
+  console.log(state);
 
   useEffect(() => {
-    storeTasks({ tasks, completedTasks });
+    storeTasks(state);
   });
 
   function updateTaskText(event) {
@@ -33,18 +72,15 @@ function Tasks() {
   }
 
   function addTask() {
-    setTasks([...tasks, { taskText, id: uuid() }]);
+    dispatch({ type: TYPES.ADD_TASK, task: { taskText, id: uuid() } });
   }
 
   function completeTask(completedTask) {
-    setCompletedTasks([...completedTasks, completedTask]);
-    setTasks(tasks.filter((task) => task.id !== completedTask.id));
+    dispatch({ type: TYPES.COMPLETE_TASK, completedTask });
   }
 
   function deleteTask(task) {
-    setCompletedTasks(
-      completedTasks.filter((completedTask) => completedTask.id !== task.id)
-    );
+    dispatch({ type: TYPES.DELETE_TASK, task });
   }
 
   return (
@@ -54,16 +90,18 @@ function Tasks() {
         <FormControl value={taskText} onChange={updateTaskText} />
         <Button onClick={addTask}>Add Task </Button>
       </Form>
-      <br />
+      {state.completedTasks.length > 0 || state.tasks.length > 0 ? (
+        <br />
+      ) : null}
       <div className="task-list">
-        {tasks.map((task) => (
+        {state.tasks.map((task) => (
           <div key={task.id} onClick={() => completeTask(task)}>
             {task.taskText}
           </div>
         ))}
       </div>
       <div className="completed-list">
-        {completedTasks.map((completedTask) => (
+        {state.completedTasks.map((completedTask) => (
           <div key={completedTask.id}>
             <strike>{completedTask.taskText}</strike>{' '}
             <span
