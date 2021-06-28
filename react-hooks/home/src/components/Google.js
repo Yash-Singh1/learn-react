@@ -11,6 +11,7 @@ function Google() {
         onKeyPress={(event) => {
           if (event.key === 'Enter') {
             window.open(`https://google.com/search?q=${userQuery}`, '_blank');
+            event.preventDefault();
           }
         }}
         onChange={(event) => setUserQuery(event.target.value)}
