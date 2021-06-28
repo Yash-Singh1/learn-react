@@ -14,7 +14,6 @@ const initialTasksState = {
 };
 
 const tasksReducer = (state, action) => {
-  console.log('reducer here', state, action);
   switch (action.type) {
     case TYPES.ADD_TASK:
       return {
@@ -61,8 +60,6 @@ function Tasks() {
 
   const [state, dispatch] = useReducer(tasksReducer, readStoredTasks());
 
-  console.log(state);
-
   useEffect(() => {
     storeTasks(state);
   });
@@ -87,7 +84,16 @@ function Tasks() {
     <div>
       <h3>Tasks</h3>
       <Form className="form" inline>
-        <FormControl value={taskText} onChange={updateTaskText} />
+        <FormControl
+          value={taskText}
+          onChange={updateTaskText}
+          onKeyPress={(event) => {
+            if (event.key === 'Enter') {
+              addTask(event);
+              event.preventDefault();
+            }
+          }}
+        />
         <Button onClick={addTask}>Add Task </Button>
       </Form>
       {state.completedTasks.length > 0 || state.tasks.length > 0 ? (
