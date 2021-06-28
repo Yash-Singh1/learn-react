@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhai+2:wght@600');
+
+body {
+  margin: 5%;
+  text-align: center;
+  font-family: 'Baloo Bhai 2', cursive;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 900;
+}
+
+.Gallery {
+  margin: 10px;
+}
+
+.Gallery > img {
+  width: 400px;
+  height: 25s0px;
+  z-index: -1;
+  opacity: 0.8;
+  object-fit: cover;
+}
+
+.multiform {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.multiform > div > input {
+  width: 40px;
+  font-size: 12px;
+  text-align: center;
+  margin-left: 5px;
+}
+
+.multiform > div {
+  float: left;
+}
+
+.task-list {
+  cursor: pointer;
+}
+
+.completed-list {
+  color: grey;
+}
+
+.delete-task {
+  color: black;
+  cursor: pointer;
+}
+
+.Stories > div {
+  margin: 15px;
+}
+
+.Matrix > img {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+}
+
+.Jobs {
+  text-align: left;
+}
