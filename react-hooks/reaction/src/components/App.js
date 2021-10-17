@@ -14,14 +14,14 @@ function App() {
   useEffect(() => {
     pubsub.addListener({
       message: (messageObject) => {
-        const { channel, message } = messageObject;
-        console.log(
-          'Recieved message',
-          message,
-          'channel',
-          channel,
-          messageObject
-        );
+        const { /* channel, */ message } = messageObject;
+        // console.log(
+        //   'Recieved message',
+        //   message,
+        //   'channel',
+        //   channel,
+        //   messageObject
+        // );
         dispatch({
           type: message.type,
           item: { ...message.item, nanoTimestamp: messageObject.timetoken }

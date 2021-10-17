@@ -59,11 +59,9 @@ class RecipeItem extends Component {
       )
     ) {
       if (this.state.favorited === false) {
-        console.log(1);
         this.setState({ favorited: true });
       }
     } else if (this.state.favorited) {
-      console.log(2);
       this.setState({ favorited: false });
     }
   }

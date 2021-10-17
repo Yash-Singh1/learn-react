@@ -9,7 +9,7 @@ import { fetchMemes } from './actions';
 import thunk from 'redux-thunk';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
-store.subscribe(() => console.log('store', store.getState()));
+// store.subscribe(() => console.log('store', store.getState()));
 store.dispatch(fetchMemes());
 
 render(
