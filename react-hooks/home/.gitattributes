@@ -1,2 +1,2 @@
-src/assets/* linguist-vendored
-src/data/* linguist-vendored
+src/assets/** linguist-vendored
+src/data/** linguist-vendored
